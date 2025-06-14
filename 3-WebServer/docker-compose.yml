@@ -1,0 +1,19 @@
+services:
+  php:
+    image: serversideup/php:8.4-cli-alpine
+    working_dir: /var/www/html
+    command: php server_pdo.php
+#    command: php server_reactpdo.php
+#    command: php server.php
+    ports:
+      - "8088:8080"
+    volumes:
+      - .:/var/www/html
+
+  mariadb:
+    image: mariadb:11.7.2
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_DATABASE: bench
+      MARIADB_ROOT_PASSWORD: 123456
